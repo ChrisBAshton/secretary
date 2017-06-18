@@ -1,5 +1,5 @@
 <?php
 
-function article_health__scheduled($rules) {
-    echo '@TODO article_health__scheduled';
+function article_health__scheduled($rules, $postID) {
+    return '@TODO article_health__scheduled';
 }

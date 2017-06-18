@@ -1,5 +1,5 @@
 <?php
 
-function article_health__links($rules) {
-    echo '@TODO article_health__links';
+function article_health__links($rules, $postID) {
+    return '@TODO article_health__links';
 }

@@ -4,14 +4,51 @@ require_once(dirname(__FILE__) . '/../vendor/autoload.php');
 add_action( 'admin_notices', 'show_report_at_top_of_post_admin_editor' ) ;
 
 function show_report_at_top_of_post_admin_editor() {
-    if (get_current_screen()->post_type === 'post') {
-        $checks = spyc_load_file(file_get_contents(__DIR__ . '/configs/' . getWebsiteName() . '.yaml'));
-        foreach($checks as $rule => $details) {
-            require(__DIR__ . '/rules/' . $rule . '.php');
-            $ruleFunction = 'article_health__' . $rule;
-            $ruleFunction($details);
+    global $post;
+    if (shouldDisplayHealthMessage()) {
+        $checks = getWebsiteConfig();
+        loadRules($checks);
+        $errors = applyRules($checks);
+        displayOutput($errors);
+    }
+}
+
+function shouldDisplayHealthMessage() {
+    return get_current_screen()->post_type === 'post';
+}
+
+function getWebsiteConfig() {
+    return spyc_load_file(file_get_contents(__DIR__ . '/configs/' . getWebsiteName() . '.yaml'));
+}
+
+function loadRules($checks) {
+    foreach($checks as $rule => $details) {
+        require(__DIR__ . '/rules/' . $rule . '.php');
+    }
+}
+
+function applyRules($checks) {
+    $errors = array();
+    foreach($checks as $rule => $details) {
+        $ruleFunction = 'article_health__' . $rule;
+        $error = $ruleFunction($details, $post->ID);
+        if ($error) {
+            $errors[] = $error;
         }
     }
+    return $errors;
+}
+
+function displayOutput($errors) {
+    if (count($errors > 0)) :
+        echo '<ul>';
+        foreach($errors as $error) :
+            echo '<li>' . $error . '</li>';
+        endforeach;
+        echo '</ul>';
+    else:
+        echo 'No problems found!';
+    endif;
 }
 
 function getWebsiteName() {

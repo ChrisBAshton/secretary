@@ -1,5 +1,5 @@
 <?php
 
-function article_health__categories($rules) {
-    echo '@TODO article_health__categories';
+function article_health__categories($rules, $postID) {
+    return '@TODO article_health__categories';
 }
