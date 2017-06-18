@@ -31,10 +31,8 @@ function applyRules($checks) {
     $errors = array();
     foreach($checks as $rule => $details) {
         $ruleFunction = 'article_health__' . $rule;
-        $error = $ruleFunction($details, $post->ID);
-        if ($error) {
-            $errors[] = $error;
-        }
+        $ruleErrors = $ruleFunction($details, $post->ID);
+        $errors = array_merge($errors, $ruleErrors);
     }
     return $errors;
 }
