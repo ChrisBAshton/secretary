@@ -1,4 +1,4 @@
-featured-image:
+featured_image:
   max-size: 300
   format: jpg
   dimensions:
