@@ -55,3 +55,11 @@ function getWebsiteName() {
     $websiteName  = ($websiteParts[0] === 'www') ? $websiteParts[1] : $websiteParts[0];
     return $websiteName;
 }
+
+function get_the_content_by_id($postID) {
+    $post = &get_post($postID);
+    setup_postdata($post);
+    $content = get_the_content();
+    wp_reset_postdata($post);
+    return $content;
+}
