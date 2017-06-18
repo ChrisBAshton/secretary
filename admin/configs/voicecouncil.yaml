@@ -1,24 +1,28 @@
-checks:
-  featured-image:
-    max-size: 300
-    format: jpg
-    dimensions:
-      width: 760
-      height: 350
-  excerpt:
-    min: 30 # characters
-    max: 300
-  scheduled:
-    required: true
-  categories:
-    not:
-      - Uncategorized
-    not-only:
-      - Featured
-  links:
-    internal:
-      open-in-new-tab: false
-    external:
-      open-in-new-tab: true
-  images:
-    alt-required: true
+featured-image:
+  max-size: 300
+  format: jpg
+  dimensions:
+    width: 760
+    height: 350
+
+excerpt:
+  min-length: 30
+  max-length: 300
+
+scheduled:
+  required: true
+
+categories:
+  not:
+    - Uncategorized
+  not-only:
+    - Featured
+
+links:
+  internal:
+    open-in-new-tab: false
+  external:
+    open-in-new-tab: true
+
+images:
+  alt-required: true
