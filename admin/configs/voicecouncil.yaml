@@ -29,8 +29,6 @@
             - Uncategorized
         not-only:
             - Featured
-        not-primary:
-            - Featured
 
 'Links':
     meta:
