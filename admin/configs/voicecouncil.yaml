@@ -5,8 +5,8 @@
         max-size: 300
         format: jpg
         dimensions:
-        width: 760
-        height: 350
+            width: 760
+            height: 350
 
 'Excerpt':
     meta:
