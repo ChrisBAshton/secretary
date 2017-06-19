@@ -1,6 +1,6 @@
-# Article health plugin
+# Secretary
 
-Automatic checks that article editorial requirements are fulfilled.
+Automatic quality-assurance checks, ensuring your articles meet editorial guidelines.
 
 # Setup
 `composer install`

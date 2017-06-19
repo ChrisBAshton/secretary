@@ -21,10 +21,10 @@ function checkDimensions(&$errors, $image, $rules) {
     $desiredHeight = $rules['dimensions']['height'];
 
     if ($width !== $desiredWidth) {
-        $errors[] = "Featured image width should be " . $desiredWidth . "px, but " . $width . "px was detected";
+        $errors[] = "Width should be " . $desiredWidth . "px, but " . $width . "px was detected";
     }
     if ($height !== $desiredHeight) {
-        $errors[] = "Featured image height should be " . $desiredHeight . "px, but " . $height . "px was detected";
+        $errors[] = "Height should be " . $desiredHeight . "px, but " . $height . "px was detected";
     }
 }
 
@@ -33,10 +33,10 @@ function checkFileInfo(&$errors, $image, $rules) {
     $imageType = pathinfo($url, PATHINFO_EXTENSION);
     $filesizeInKb = getKbSizeOfUrl($url);
     if ($filesizeInKb > $rules['max-size']) {
-        $errors[] = "Max recommended size for Featured Image is " . $rules['max-size'] . "KB but image appears to be " . $filesizeInKb . "KB in size";
+        $errors[] = "Max recommended size is " . $rules['max-size'] . "KB but image is " . $filesizeInKb . "KB in size";
     }
     if ($imageType !== 'jpg') {
-        $errors[] = "Featured image type should usually be " . $rules['format'] . ", but " . $imageType . " type was detected. Be careful!";
+        $errors[] = "Image type should usually be " . $rules['format'] . ", but " . $imageType . " type was detected.";
     }
 }
 

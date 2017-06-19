@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Plugin Name: Article Health by Webdapper
- * Description: Automatic checks on articles.
+ * Plugin Name: Secretary
+ * Description: Automatic quality-assurance checks, ensuring your articles meet editorial guidelines.
  * Version: 1.0.0
- * Author: Webdapper
- * Author URI: http://webdapper.com
+ * Author: ChrisBAshton
+ * Author URI: http://ashton.codes
  */
 
 require_once(dirname(__FILE__) . '/admin/init.php');
@@ -18,13 +18,13 @@ require_once(dirname(__FILE__) . '/admin/init.php');
 //
 // See: http://codex.wordpress.org/Function_Reference/flush_rewrite_rules
 // ###########################################################################
-register_activation_hook( __FILE__, 'article_health__myplugin_flush_rewrites' );
-register_deactivation_hook( __FILE__, 'article_health__myplugin_flush_rewrites_deactivate' );
+register_activation_hook( __FILE__, 'secretary__myplugin_flush_rewrites' );
+register_deactivation_hook( __FILE__, 'secretary__myplugin_flush_rewrites_deactivate' );
 
-function article_health__myplugin_flush_rewrites() {
+function secretary__myplugin_flush_rewrites() {
     flush_rewrite_rules();
 }
 
-function article_health__myplugin_flush_rewrites_deactivate() {
+function secretary__myplugin_flush_rewrites_deactivate() {
     flush_rewrite_rules();
 }

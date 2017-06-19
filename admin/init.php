@@ -1,7 +1,11 @@
 <?php
 require_once(dirname(__FILE__) . '/../vendor/autoload.php');
+require_once(dirname(__FILE__) . '/views/secretary.php');
 
-add_action( 'admin_notices', 'show_report_at_top_of_post_admin_editor' ) ;
+add_action('admin_notices', 'show_report_at_top_of_post_admin_editor');
+add_action('admin_print_styles', function () {
+    echo '<link rel="stylesheet" href="'. plugins_url('views/secretary.css', __FILE__ ) .'" />';
+});
 
 function show_report_at_top_of_post_admin_editor() {
     global $post;
@@ -9,12 +13,12 @@ function show_report_at_top_of_post_admin_editor() {
         $checks = getWebsiteConfig();
         loadRules($checks);
         $errors = applyRules($checks);
-        displayOutput($errors);
+        new SecretaryView($errors);
     }
 }
 
 function shouldDisplayHealthMessage() {
-    return get_current_screen()->post_type === 'post';
+    return get_current_screen()->parent_base === 'edit' && get_current_screen()->base == 'post';
 }
 
 function getWebsiteConfig() {
@@ -22,31 +26,20 @@ function getWebsiteConfig() {
 }
 
 function loadRules($checks) {
-    foreach($checks as $rule => $details) {
-        require(__DIR__ . '/rules/' . $rule . '.php');
+    foreach($checks as $title => $details) {
+        require(__DIR__ . '/rules/' . $details['meta']['rule'] . '.php');
     }
 }
 
 function applyRules($checks) {
     $errors = array();
-    foreach($checks as $rule => $details) {
-        $ruleFunction = 'article_health__' . $rule;
-        $ruleErrors = $ruleFunction($details, $post->ID);
-        $errors = array_merge($errors, $ruleErrors);
+    foreach($checks as $title => $details) {
+        $ruleFunction = 'article_health__' . $details['meta']['rule'];
+        $options = isset($details['options']) ? $details['options'] : [];
+        $ruleErrors = $ruleFunction($options, $post->ID);
+        $errors[$title] = $ruleErrors;
     }
     return $errors;
-}
-
-function displayOutput($errors) {
-    if (count($errors > 0)) :
-        echo '<ul>';
-        foreach($errors as $error) :
-            echo '<li>' . $error . '</li>';
-        endforeach;
-        echo '</ul>';
-    else:
-        echo 'No problems found!';
-    endif;
 }
 
 function getWebsiteName() {

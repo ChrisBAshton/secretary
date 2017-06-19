@@ -1,28 +1,46 @@
-featured_image:
-  max-size: 300
-  format: jpg
-  dimensions:
-    width: 760
-    height: 350
+'Featured Image':
+    meta:
+        rule: featured_image
+    options:
+        max-size: 300
+        format: jpg
+        dimensions:
+        width: 760
+        height: 350
 
-excerpt:
-  min-length: 30
-  max-length: 300
+'Excerpt':
+    meta:
+        rule: excerpt
+    options:
+        min-length: 30
+        max-length: 300
 
-scheduled:
-  required: true
+'Scheduled':
+    meta:
+        rule: scheduled
+    options:
+        publish-time: '15:00'
 
-categories:
-  not:
-    - Uncategorized
-  not-only:
-    - Featured
+'Categories':
+    meta:
+        rule: categories
+    options:
+        not:
+            - Uncategorized
+        not-only:
+            - Featured
+        not-primary:
+            - Featured
 
-links:
-  internal:
-    open-in-new-tab: false
-  external:
-    open-in-new-tab: true
+'Links':
+    meta:
+        rule: links
+    options:
+        internal:
+            open-in-new-tab: false
+        external:
+            open-in-new-tab: true
 
-images:
-  alt-required: true
+'Images':
+    meta:
+        rule: images
