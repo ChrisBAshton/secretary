@@ -34,7 +34,7 @@ function loadRules($checks) {
 function applyRules($checks) {
     $errors = array();
     foreach($checks as $title => $details) {
-        $ruleFunction = 'article_health__' . $details['meta']['rule'];
+        $ruleFunction = 'secretary__' . $details['meta']['rule'];
         $options = isset($details['options']) ? $details['options'] : [];
         $ruleErrors = $ruleFunction($options, $post->ID);
         $errors[$title] = $ruleErrors;

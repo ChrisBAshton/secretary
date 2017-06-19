@@ -1,6 +1,6 @@
 <?php
 
-function article_health__featured_image($rules, $postID) {
+function secretary__featured_image($rules, $postID) {
     $errors = [];
     if (has_post_thumbnail($postID)) {
         $attachmentID = get_post_thumbnail_id($postID);

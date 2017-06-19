@@ -1,6 +1,6 @@
 <?php
 
-function article_health__scheduled($rules, $postID) {
+function secretary__scheduled($rules, $postID) {
     $errors = [];
     if (get_post_status($postID) === 'draft' || get_post_status($postID) === 'auto-draft') {
         $errors[] = "This post needs a schedule date!";

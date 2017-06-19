@@ -1,6 +1,6 @@
 <?php
 
-function article_health__links($rules, $postID) {
+function secretary__links($rules, $postID) {
     $content = get_the_content_by_id($postID);
     $links = [];
     $regex = '/<a href="([^>]+)">([^<]+)<\/a>/';

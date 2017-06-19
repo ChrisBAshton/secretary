@@ -1,6 +1,6 @@
 <?php
 
-function article_health__images($rules, $postID) {
+function secretary__images($rules, $postID) {
     if (!$rules['alt-required']) {
         return;
     }

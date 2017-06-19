@@ -2,7 +2,7 @@
 
 class SecretaryView {
     function __construct($errors) {
-        $this->errors = $errors;
+        $this->rules = $errors;
         add_meta_box(
             'secretary__metabox',
             'Secretary',
@@ -17,7 +17,7 @@ class SecretaryView {
 
     function renderMetaBox() {
         echo '<ul class="secretary">';
-        foreach($this->errors as $title => $ruleErrors):
+        foreach($this->rules as $title => $ruleErrors):
             if ($this->containsErrors($ruleErrors)) :
                 echo '<li class="secretary-rule-title">' . $title . ' ❌</li>';
                 $this->displayErrors($ruleErrors);
@@ -25,12 +25,12 @@ class SecretaryView {
                 echo '<li class="secretary-rule-title">' . $title . ' ✅</li>';
             endif;
         endforeach;
-        $this->displaySummary($this->errors);
+        $this->displaySummary($this->rules);
         echo '</ul>';
     }
 
-    function containsErrors($errors) {
-        return count($errors) !== 0;
+    function containsErrors($rules) {
+        return count($rules) !== 0;
     }
 
     function displayErrors($errors) {

@@ -1,6 +1,6 @@
 <?php
 
-function article_health__excerpt($rules, $postID) {
+function secretary__excerpt($rules, $postID) {
     $errors = [];
     if (!has_excerpt($postID)) {
         $errors[] = "You must specify an excerpt!";
