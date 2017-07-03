@@ -37,6 +37,7 @@ class SecretaryConfig {
             	}
                 SecretaryConfig::renderForm();
                 SecretaryConfig::highlightYamlSyntax();
+                SecretaryRules::showHelp();
             }
         );
     }
