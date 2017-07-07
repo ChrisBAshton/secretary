@@ -8,23 +8,26 @@
  * Author URI: http://ashton.codes
  */
 
-require_once(dirname(__FILE__) . '/admin/init.php');
+require_once(dirname(__FILE__) . '/vendor/autoload.php');
 
-// ###########################################################################
-// IMPORTANT - need to run flush_rewrite_rules once after activation,
-// otherwise custom post types cannot be found (404 error).
-// Only want to run it once because it is a very expensive operation, hence
-// we only do it on activation/deactivation.
-//
-// See: http://codex.wordpress.org/Function_Reference/flush_rewrite_rules
-// ###########################################################################
-register_activation_hook( __FILE__, 'secretary__myplugin_flush_rewrites' );
-register_deactivation_hook( __FILE__, 'secretary__myplugin_flush_rewrites_deactivate' );
+require_all('controllers/*.php');
+require_all('rules/*.php');
+require_all('views/*.php');
 
-function secretary__myplugin_flush_rewrites() {
-    flush_rewrite_rules();
+SecretaryConfig::init();
+SecretaryPostAdmin::init();
+
+function require_all($dirName) {
+    $files = glob(dirname(__FILE__) . '/' . $dirName);
+    foreach ($files as $file) {
+        require($file);
+    }
 }
 
-function secretary__myplugin_flush_rewrites_deactivate() {
-    flush_rewrite_rules();
+function get_the_content_by_id($postID) {
+    $post = &get_post($postID);
+    setup_postdata($post);
+    $content = get_the_content();
+    wp_reset_postdata($post);
+    return $content;
 }
