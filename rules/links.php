@@ -1,17 +1,19 @@
 <?php
 
 SecretaryRules::register(array(
-    'shortname' => 'links',
-    'class' => 'SecretaryRuleLinks',
-    'title' => 'Links',
-    'description' => '
-Example.
-
-internal:
-  open-in-new-tab: false
-external:
-  open-in-new-tab: true
+    'id' => 'links',
+    'meta' => array(
+        'title' => 'Links',
+        'description' => 'Enforces new tab rules.',
+        'example' => '
+links:
+    internal:
+      open-in-new-tab: false
+    external:
+      open-in-new-tab: true
 ',
+    ),
+    'apply' => array('SecretaryRuleLinks', 'apply'),
 ));
 
 class SecretaryRuleLinks {

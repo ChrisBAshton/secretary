@@ -1,24 +1,21 @@
 <?php
 
 SecretaryRules::register(array(
-    'shortname' => 'html_checker',
-    'class' => 'SecretaryRuleHtmlChecker',
-    'title' => 'HTML Checker',
-    'description' => '
-Example:
-
-risky-html:
-  - table
-  - div
-  - span
-  - style
-  - script
-    ',
-));
-
-class SecretaryRuleHtmlChecker {
-
-    public static function apply($rules, $postID) {
+    'id' => 'html-checker',
+    'meta' => array(
+        'title' => 'HTML Checker',
+        'description' => 'Warns if there is any dodgy hard-coded HTML in your post.',
+        'example' => '
+html-checker:
+    risky-html:
+      - table
+      - div
+      - span
+      - style
+      - script
+',
+    ),
+    'apply' => function ($rules, $postID) {
         $errors = [];
         $content = get_the_content_by_id($postID);
         foreach($rules['risky-html'] as $tag) :
@@ -30,5 +27,5 @@ class SecretaryRuleHtmlChecker {
           }
         endforeach;
         return $errors;
-    }
-}
+    },
+));

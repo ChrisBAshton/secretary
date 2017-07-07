@@ -1,21 +1,17 @@
 <?php
 
 SecretaryRules::register(array(
-    'shortname' => 'excerpt',
-    'class' => 'SecretaryRuleExcerpt',
-    'title' => 'Excerpt',
-    'description' => '
-Example:
-
+    'id' => 'excerpt',
+    'meta' => array(
+        'title' => 'Excerpt',
+        'description' => 'Enforces a minimum and maximum length for your excerpts.',
+        'example' => '
 excerpt:
     min-length: 30
     max-length: 300
-    ',
-));
-
-class SecretaryRuleExcerpt {
-
-    public static function apply($rules, $postID) {
+',
+    ),
+    'apply' => function ($rules, $postID) {
         $errors = [];
         if (!has_excerpt($postID)) {
             $errors[] = "You must specify an excerpt!";
@@ -32,4 +28,4 @@ class SecretaryRuleExcerpt {
         }
         return $errors;
     }
-}
+));

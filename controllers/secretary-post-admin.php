@@ -6,7 +6,7 @@ class SecretaryPostAdmin {
             SecretaryPostAdmin::show_report_at_top_of_post_admin_editor();
         });
         add_action('admin_print_styles', function () {
-            echo '<link rel="stylesheet" href="'. plugins_url('views/secretary.css', __FILE__ ) .'" />';
+            echo '<link rel="stylesheet" href="'. plugins_url('../views/secretary.css', __FILE__ ) .'" />';
         });
     }
 
@@ -24,12 +24,16 @@ class SecretaryPostAdmin {
 
     public static function applyRules($checks) {
         $errors = array();
-        foreach($checks as $shortname => $details) {
-            $Rule = SecretaryRules::$rules[$shortname];
-            $RuleClass = $Rule['class'];
-            $options = is_array($details) ? $details : [];
-            $ruleErrors = $RuleClass::apply($options, $post->ID);
-            $errors[$Rule['title']] = $ruleErrors;
+        foreach($checks as $id => $details) {
+            $Rule = SecretaryRules::$rules[$id];
+            if (!$Rule) {
+                $errors[$id] = ["Config error: no such rule!"];
+            }
+            else {
+                $options = is_array($details) ? $details : [];
+                $ruleErrors = $Rule['apply']($options, $post->ID);
+                $errors[$Rule['meta']['title']] = $ruleErrors;
+            }
         }
         return $errors;
     }

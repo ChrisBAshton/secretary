@@ -1,20 +1,5 @@
 <?php
 
-SecretaryRules::register(array(
-    'shortname' => 'categories',
-    'class' => 'SecretaryRuleCategories',
-    'title' => 'Categories',
-    'description' => '
-Example:
-
-categories:
-    not:
-        - Uncategorized
-    not-only:
-        - Featured
-    ',
-));
-
 class SecretaryRuleCategories {
 
     public static function apply($rules, $postID) {
@@ -52,3 +37,25 @@ class SecretaryRuleCategories {
         endforeach;
     }
 }
+
+SecretaryRules::register(array(
+    'id' => 'categories',
+    'meta' => array(
+        'title' => 'Categories',
+        'description' => '
+Warn if a post is in a forbidden category.
+
+`not` takes an array of categories that the post should NOT be in, period.
+
+`not-only` takes an array of categories where that should not be the ONLY category the post is in. For example, "Featured" is not particularly descriptive - you probably want your post to be in another category alongside that.
+',
+        'example' => '
+categories:
+    not:
+        - Uncategorized
+    not-only:
+        - Featured
+'
+    ),
+    'apply' => array('SecretaryRuleCategories', 'apply'),
+));

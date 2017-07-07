@@ -35,25 +35,48 @@ class SecretaryConfig {
             	if (!current_user_can('manage_options'))  {
             		wp_die(__( 'You do not have sufficient permissions to access this page.'));
             	}
-                SecretaryConfig::renderForm();
-                SecretaryConfig::highlightYamlSyntax();
-                SecretaryRules::showHelp();
+
+                echo '
+<style>
+.CodeMirror {
+    height: 70vh!important;
+}
+
+.col-1\/2 {
+    float: left;
+    width: 48%;
+    margin-right: 2%;
+}
+
+.secretary-textarea {
+    min-height: 120px;
+    min-width: 300px;
+}
+</style>
+                ';
+                echo '<div class="wrap"><h1>Secretary - Config</h1>';
+                    echo '<div class="col-1/2 secretary-form">';
+                        SecretaryConfig::renderForm();
+                        SecretaryConfig::highlightYamlSyntax();
+                    echo '</div>';
+                    echo '<div class="col-1/2 secretary-help">';
+                        SecretaryRules::showHelp();
+                    echo '</div>';
+                echo '</div>';
             }
         );
     }
 
 
     public static function renderForm() {
-        echo '<div class="wrap"><h1>Secretary - Config</h1>';
-            echo '<form method="post" action="options.php">';
-                settings_fields(SecretaryConfig::$configName);
-                do_settings_sections(SecretaryConfig::$configName);
-                echo '<textarea id="' . SecretaryConfig::$configOptionName . '" name="' . SecretaryConfig::$configOptionName . '">'
-                        . get_option(SecretaryConfig::$configOptionName) .
-                     '</textarea>';
-                submit_button();
-            echo '</form>';
-        echo '</div>';
+        echo '<form method="post" action="options.php">';
+            settings_fields(SecretaryConfig::$configName);
+            do_settings_sections(SecretaryConfig::$configName);
+            echo '<textarea id="' . SecretaryConfig::$configOptionName . '" class="secretary-textarea" name="' . SecretaryConfig::$configOptionName . '">'
+                    . get_option(SecretaryConfig::$configOptionName) .
+                 '</textarea>';
+            submit_button();
+        echo '</form>';
     }
 
     public static function highlightYamlSyntax() {
@@ -63,10 +86,13 @@ class SecretaryConfig {
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.27.4/codemirror.min.css" />
 
 <script>
-CodeMirror.fromTextArea(document.getElementById("' . SecretaryConfig::$configOptionName . '"), {
-mode: "yaml",
-lineNumbers: true
-});
+(function () {
+    var textarea = document.getElementById("' . SecretaryConfig::$configOptionName . '");
+    CodeMirror.fromTextArea(textarea, {
+        mode: "yaml",
+        lineNumbers: true
+    });
+})();
 </script>
         ';
     }

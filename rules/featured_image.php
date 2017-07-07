@@ -1,19 +1,20 @@
 <?php
 
 SecretaryRules::register(array(
-    'shortname' => 'featured_image',
-    'class' => 'SecretaryRuleFeaturedImage',
-    'title' => 'Featured Image',
-    'description' => '
-Example:
-
-featured_image:
+    'id' => 'featured-image',
+    'meta' => array(
+        'title' => 'Featured Image',
+        'description' => 'Checks dimensions, filesize and file type of your Featured Image.',
+        'example' => '
+featured-image:
     max-size: 100
     format: jpg
     dimensions:
         width: 760
         height: 350
-    ',
+',
+    ),
+    'apply' => array('SecretaryRuleFeaturedImage', 'apply'),
 ));
 
 class SecretaryRuleFeaturedImage {

@@ -2,7 +2,7 @@
 
 class SecretaryView {
     function __construct($errors) {
-        $this->rules = $errors;
+        $this->rules = $this->reorderToShowErrorsFirst($errors);
         add_meta_box(
             'secretary__metabox',
             'Secretary',
@@ -15,14 +15,30 @@ class SecretaryView {
         );
     }
 
+    function reorderToShowErrorsFirst($rules) {
+        // @TODO ugly. Refactor
+        $sortedArray = array();
+        foreach($rules as $title => $ruleErrors):
+            if ($this->containsErrors($ruleErrors)) {
+                $sortedArray[$title] = $ruleErrors;
+            }
+        endforeach;
+        foreach($rules as $title => $ruleErrors):
+            if (!$this->containsErrors($ruleErrors)) {
+                $sortedArray[$title] = $ruleErrors;
+            }
+        endforeach;
+        return $sortedArray;
+    }
+
     function renderMetaBox() {
         echo '<ul class="secretary">';
         foreach($this->rules as $title => $ruleErrors):
             if ($this->containsErrors($ruleErrors)) :
-                echo '<li class="secretary-rule-title">' . $title . ' ❌</li>';
+                echo '<li class="secretary-rule-title">❌ ' . $title . '</li>';
                 $this->displayErrors($ruleErrors);
             else:
-                echo '<li class="secretary-rule-title">' . $title . ' ✅</li>';
+                echo '<li class="secretary-rule-title">✅ ' . $title . '</li>';
             endif;
         endforeach;
         $this->displaySummary($this->rules);

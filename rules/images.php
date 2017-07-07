@@ -1,12 +1,15 @@
 <?php
 
 SecretaryRules::register(array(
-    'shortname' => 'images',
-    'class' => 'SecretaryRuleImages',
-    'title' => 'Images',
-    'description' => '
-Enforces ALT.
-    ',
+    'id' => 'images',
+    'meta' => array(
+        'title' => 'Images',
+        'description' => 'Enforces ALT. Does not currently look at any options.',
+        'example' => '
+images: true
+',
+    ),
+    'apply' => array('SecretaryRuleImages', 'apply'),
 ));
 
 class SecretaryRuleImages {
