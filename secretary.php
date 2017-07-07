@@ -11,8 +11,8 @@
 require_once(dirname(__FILE__) . '/vendor/autoload.php');
 
 require_all('controllers/*.php');
-require_all('rules/*.php');
 require_all('views/*.php');
+require_all('rules/*.php');
 
 SecretaryConfig::init();
 SecretaryPostAdmin::init();
