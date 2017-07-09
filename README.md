@@ -2,7 +2,9 @@
 
 Automatic quality-assurance checks, ensuring your articles meet editorial guidelines.
 
-Users define
+Users define their editorial rules in YAML (see Settings -> Secretary) according to a number of built-in rule functions. For example, Secretary can show a warning if you've forgotten to set a Featured Image for your post, by adding the `featured-image` rule to your YAML config.
+
+Secretary comes with 7 different rules out of the box, but other plugins could in theory provide rules to Secretary by calling `SecretaryRules::register`.
 
 ## Setup
 `composer install`
@@ -11,9 +13,7 @@ Users define
 
 ## Creating a rule
 
-You (or any plugin) can create a rule by calling `SecretaryRules::register`.
-
-This function expects an array with three arguments:
+`SecretaryRules::register` expects an array with three arguments:
 
 ### id
 
@@ -56,7 +56,7 @@ foo:
 
 This is the PHP callback which should be a function that takes two parameters: `$options` and `$postID`.
 
-`$options` is an array of options as per the YAML config you've asked the user to describe. In the example above,it would look like this:
+`$options` is an array of options as per the YAML config you've asked the user to describe. In the example above, it would look like this:
 
 ```php
 array(
