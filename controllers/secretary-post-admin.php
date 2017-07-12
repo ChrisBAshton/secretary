@@ -6,7 +6,7 @@ class SecretaryPostAdmin {
             SecretaryPostAdmin::show_report_at_top_of_post_admin_editor();
         });
         add_action('admin_print_styles', function () {
-            echo '<link rel="stylesheet" href="'. plugins_url('../views/secretary.css', __FILE__ ) .'" />';
+            wp_enqueue_style('secretary', plugins_url('../views/secretary.css', __FILE__ ), false);
         });
     }
 

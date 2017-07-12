@@ -1,0 +1,14 @@
+.CodeMirror {
+    height: 70vh!important;
+}
+
+.col-1\/2 {
+    float: left;
+    width: 48%;
+    margin-right: 2%;
+}
+
+.secretary-textarea {
+    min-height: 120px;
+    min-width: 300px;
+}

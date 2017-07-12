@@ -32,32 +32,19 @@ class SecretaryConfig {
             'manage_options',
             SecretaryConfig::$configName,
             function () {
+                wp_enqueue_style('secretary__codemirror', plugins_url('../views/codemirror.min.css', __FILE__ ));
+                wp_enqueue_style('secretary__codemirror_overrides', plugins_url('../views/codemirror.overrides.css', __FILE__ ));
+                wp_enqueue_script('secretary__codemirror', plugins_url('../views/codemirror.min.js', __FILE__ ));
+                wp_enqueue_script('secretary__codemirror_overrides', plugins_url('../views/yaml.min.js', __FILE__ ));
+                wp_enqueue_script('secretary__codemirror_init', plugins_url('../views/codemirror-init.js', __FILE__ ));
+
             	if (!current_user_can('manage_options'))  {
             		wp_die(__( 'You do not have sufficient permissions to access this page.'));
             	}
 
-                echo '
-<style>
-.CodeMirror {
-    height: 70vh!important;
-}
-
-.col-1\/2 {
-    float: left;
-    width: 48%;
-    margin-right: 2%;
-}
-
-.secretary-textarea {
-    min-height: 120px;
-    min-width: 300px;
-}
-</style>
-                ';
                 echo '<div class="wrap"><h1>Secretary - Config</h1>';
                     echo '<div class="col-1/2 secretary-form">';
                         SecretaryConfig::renderForm();
-                        SecretaryConfig::highlightYamlSyntax();
                     echo '</div>';
                     echo '<div class="col-1/2 secretary-help">';
                         SecretaryRules::showHelp();
@@ -77,23 +64,5 @@ class SecretaryConfig {
                  '</textarea>';
             submit_button();
         echo '</form>';
-    }
-
-    public static function highlightYamlSyntax() {
-        echo '
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.27.4/codemirror.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.27.4/mode/yaml/yaml.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.27.4/codemirror.min.css" />
-
-<script>
-(function () {
-    var textarea = document.getElementById("' . SecretaryConfig::$configOptionName . '");
-    CodeMirror.fromTextArea(textarea, {
-        mode: "yaml",
-        lineNumbers: true
-    });
-})();
-</script>
-        ';
     }
 }
