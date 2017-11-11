@@ -23,7 +23,7 @@ Secretary comes with 7 different rules out of the box, but other plugins could i
 
 Example YAML config below:
 
-```yaml
+`
 categories:
     not:
         - Uncategorized
@@ -60,7 +60,7 @@ html-checker:
       - span
       - style
       - script
-```
+`
 
 == Frequently Asked Questions ==
 
@@ -72,10 +72,10 @@ Look at the right hand side of the screen under Settings -> Secretary.
 
 If you see something like:
 
-```
+`
 ❌ foo
 Config error: no such rule!
-```
+`
 
 ...it means you have asked Secretary to apply a rule which does not exist. Check your spelling.
 
