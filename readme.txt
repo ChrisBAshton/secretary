@@ -2,7 +2,7 @@
 Contributors: ChrisBAshton
 Donate link: http://twitter.com/ChrisBAshton
 Tags: secretary, quality, validate, check, qa, proofread
-Tested up to: 4.8
+Tested up to: 4.9
 Stable tag: trunk
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -13,7 +13,7 @@ Automatic quality-assurance checks, ensuring your articles meet editorial guidel
 
 Users define their editorial rules in YAML (see Settings -> Secretary) according to a number of built-in rule functions. For example, Secretary can show a warning if you've forgotten to set a Featured Image for your post, by adding the `featured-image` rule to your YAML config.
 
-Secretary comes with 7 different rules out of the box, but other plugins could in theory provide rules to Secretary by calling `SecretaryRules::register`.
+Secretary comes with a number of rules out of the box, but you can write your own custom plugins for Secretary by calling `SecretaryRules::register`. See example at https://github.com/ChrisBAshton/secretary-rule-gallery-at-top, and API documentation at https://github.com/ChrisBAshton/secretary.
 
 == Installation ==
 
