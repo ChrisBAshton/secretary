@@ -2,7 +2,7 @@
 
 Automatic quality-assurance checks, ensuring your articles meet editorial guidelines.
 
-Users define their editorial rules in YAML (see Settings -> Secretary) according to a number of built-in rule functions. For example, Secretary can show a warning if you've forgotten to set a Featured Image for your post, by adding the `featured-image` rule to your YAML config.
+Users define their editorial rules in YAML (see Settings -> Secretary) according to a number of [built-in rule functions](https://github.com/ChrisBAshton/secretary/tree/master/rules), or any [external rule functions](https://github.com/ChrisBAshton/secretary-rule-gallery-at-top) that conform to the API. For example, Secretary can show a warning if you've forgotten to set a Featured Image for your post, by adding the `featured-image` rule to your YAML config.
 
 Secretary comes with 7 different rules out of the box, but other plugins could in theory provide rules to Secretary by calling `SecretaryRules::register`.
 
@@ -71,7 +71,7 @@ array(
 
 The callback can be an anonymous function, or a variable function if you need to split your code up more neatly (e.g. `'apply' => array('SecretaryRuleCategoriesClass', 'myCustomFunction')`).
 
-## Example rule definition
+## Example rule definition
 
 ```php
 SecretaryRules::register(array(
