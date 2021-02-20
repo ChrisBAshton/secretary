@@ -88,7 +88,10 @@ Config error: no such rule!
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.1 =
+* Tested with Gutenberg
+
+= 1.0.0 =
 * Initial release
 
 == Contact ==

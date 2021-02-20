@@ -150,6 +150,8 @@ html-checker:
 
 `cd trunk` and make the changes you want to. Commit to Git in the normal way.
 
+Update the changelog in `readme.txt`.
+
 When ready, `svn cp trunk tags/{TAG_NAME}`, then manually delete the content you don't want deployed (e.g. `.git` folder etc) and copy the top level `assets` folder into the tag (overwriting the default one).
 
 Then commit with `svn ci -m "tagging version {TAG_NAME}"`.
