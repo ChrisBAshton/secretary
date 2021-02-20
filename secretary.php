@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Secretary
  * Description: Automatic quality-assurance checks, ensuring your articles meet editorial guidelines.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: ChrisBAshton
  * Author URI: http://ashton.codes
  */

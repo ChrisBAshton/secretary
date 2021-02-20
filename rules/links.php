@@ -4,7 +4,7 @@ SecretaryRules::register(array(
     'id' => 'links',
     'meta' => array(
         'title' => 'Links',
-        'description' => 'Enforces new tab rules.',
+        'description' => 'Enforces new tab rules. Note that this only works on pre-Gutenberg sites.',
         'example' => '
 links:
     internal:
