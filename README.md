@@ -7,6 +7,7 @@ Users define their editorial rules in YAML (see Settings -> Secretary) according
 Secretary comes with 7 different rules out of the box, but other plugins could in theory provide rules to Secretary by calling `SecretaryRules::register`.
 
 ## Setup
+
 `composer install`
 
 (Downloads all required dependencies, saves to a `vendor` directory).
@@ -21,11 +22,11 @@ The unique ID of your rule. This ID corresponds to what the user will put in the
 
 ```yaml
 foo:
-    option1: true
-    option2: 'bar'
-    my-list:
-        - an item
-        - another item
+  option1: true
+  option2: "bar"
+  my-list:
+    - an item
+    - another item
 ```
 
 The properties underneath `foo:` in the YAML config above would be passed to your rule to do with it what you will.
@@ -34,9 +35,9 @@ The properties underneath `foo:` in the YAML config above would be passed to you
 
 This is an array of meta information describing your rule. It should contain:
 
-* title
-* description - what it does
-* example - how to use it
+- title
+- description - what it does
+- example - how to use it
 
 ```php
 array(
@@ -109,39 +110,48 @@ excerpt:
 
 ```yaml
 categories:
-    not:
-        - Uncategorized
-    not-only:
-        - Featured
+  not:
+    - Uncategorized
+  not-only:
+    - Featured
 
 featured-image:
-    max-size: 100
-    format: jpg
-    dimensions:
-        width: 760
-        height: 350
+  max-size: 100
+  format: jpg
+  dimensions:
+    width: 760
+    height: 350
 
 excerpt:
-    min-length: 30
-    max-length: 300
+  min-length: 30
+  max-length: 300
 
 scheduled:
-    publish-time: '15:00'
+  publish-time: "15:00"
 
 links:
-    internal:
-        open-in-new-tab: false
-    external:
-        open-in-new-tab: true
+  internal:
+    open-in-new-tab: false
+  external:
+    open-in-new-tab: true
 
-images:
-    true
+images: true
 
 html-checker:
-    risky-html:
-      - table
-      - div
-      - span
-      - style
-      - script
+  risky-html:
+    - table
+    - div
+    - span
+    - style
+    - script
 ```
+
+## Deployment
+
+`cd trunk` and make the changes you want to. Commit to Git in the normal way.
+
+When ready, `svn cp trunk tags/{TAG_NAME}`, then manually delete the content you don't want deployed (e.g. `.git` folder etc) and copy the top level `assets` folder into the tag (overwriting the default one).
+
+Then commit with `svn ci -m "tagging version {TAG_NAME}"`.
+
+Sense-check by visiting https://wordpress.org/plugins/secretary/.
