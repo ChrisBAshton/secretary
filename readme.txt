@@ -2,7 +2,7 @@
 Contributors: ChrisBAshton
 Donate link: http://twitter.com/ChrisBAshton
 Tags: secretary, quality, validate, check, qa, proofread
-Tested up to: 5.6.1
+Tested up to: 5.9
 Stable tag: trunk
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
