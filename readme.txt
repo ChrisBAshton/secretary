@@ -88,6 +88,12 @@ Config error: no such rule!
 
 == Changelog ==
 
+= 1.0.3 =
+* Removes an accidentally committed internal-facing README file
+
+= 1.0.2 =
+* Removed unneeded 'assets/' directory
+
 = 1.0.1 =
 * Tested with Gutenberg
 
