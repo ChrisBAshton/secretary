@@ -145,7 +145,6 @@ html-checker:
 This repository uses [WordPress.org Plugin Deploy](https://github.com/marketplace/actions/wordpress-plugin-deploy) to:
 
 - automatically publish new versions of the Secretary plugin when a new [release](https://github.com/ChrisBAshton/secretary/releases) is published
+  - Sense-check that the deployment worked by visiting https://plugins.trac.wordpress.org/browser/secretary
 - automatically update the plugin README and assets on its [homepage](https://wordpress.org/plugins/secretary/) when `readme.txt` or any asset in `.wordpress-org` is updated on `main`.
   - This way you can update the "Tested up to" value without having to bump the plugin version.
-
-Sense-check by visiting https://wordpress.org/plugins/secretary/.
