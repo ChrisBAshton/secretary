@@ -2,7 +2,7 @@
 /.git
 /.github
 /.distignore
-.gitignore
+/.gitignore
 
 /composer.json
 /composer.lock
