@@ -6,12 +6,6 @@ Users define their editorial rules in YAML (see Settings -> Secretary) according
 
 Secretary comes with 7 different rules out of the box, but other plugins could in theory provide rules to Secretary by calling `SecretaryRules::register`.
 
-## Setup
-
-`composer install`
-
-(Downloads all required dependencies, saves to a `vendor` directory).
-
 ## Creating a rule
 
 `SecretaryRules::register` expects an array with three arguments:
@@ -148,12 +142,10 @@ html-checker:
 
 ## Deployment
 
-`cd trunk` and make the changes you want to. Commit to Git in the normal way.
+This repository uses [WordPress.org Plugin Deploy](https://github.com/marketplace/actions/wordpress-plugin-deploy) to:
 
-Update the changelog in `readme.txt`.
-
-When ready, `svn cp trunk tags/{TAG_NAME}`, then manually delete the content you don't want deployed (e.g. `.git` folder etc) and copy the top level `assets` folder into the tag (overwriting the default one).
-
-Then commit with `svn ci -m "tagging version {TAG_NAME}"`.
+- automatically publish new versions of the Secretary plugin when a new [release](https://github.com/ChrisBAshton/secretary/releases) is published
+- automatically update the plugin README and assets on its [homepage](https://wordpress.org/plugins/secretary/) when `readme.txt` or any asset in `.wordpress-org` is updated on `main`.
+  - This way you can update the "Tested up to" value without having to bump the plugin version.
 
 Sense-check by visiting https://wordpress.org/plugins/secretary/.
