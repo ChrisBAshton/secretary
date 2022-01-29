@@ -1,0 +1,22 @@
+# This GitHub Action pushes minor changes to WordPress.org without
+# creating new plugin versions, e.g. if the assets are changed or
+# the readme.txt is changed.
+# See https://github.com/10up/action-wordpress-plugin-asset-update
+name: Plugin asset/readme update
+on:
+  push:
+    branches:
+      - main
+jobs:
+  main:
+    name: Push to main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: WordPress.org plugin asset/readme update
+        uses: 10up/action-wordpress-plugin-asset-update@stable
+        env:
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SLUG: secretary
+          # README_NAME: README.md # https://github.com/10up/action-wordpress-plugin-asset-update#optional-environment-variables @TODO
